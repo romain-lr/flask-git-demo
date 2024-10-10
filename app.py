@@ -20,7 +20,7 @@ def get_zodiac_sign(dob):
     for m, d, sign in zodiac_signs:
         if (month, day) <= (m, d):
             return sign
-
+        
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -28,9 +28,10 @@ def index():
         dob = request.form['dob']
         age = calculate_age(dob)
         zodiac = get_zodiac_sign(dob)
-        message = f"Welcome, {name}! You are {age} years old. Your zodiac sign is {zodiac}."
+        message = f"Hello, {name}! Your age is {age} and your zodiac sign is {zodiac}."
         return render_template('result.html', message=message)
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
